@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "error_code": {
+      "type": "integer"
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "error_code",
+    "error_message",
+    "data"
+  ]
+}
