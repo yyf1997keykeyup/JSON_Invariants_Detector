@@ -1,9 +1,10 @@
 class SchemaKey:
+    PATH = "path"
     TYPE = "type"
     PROPERTIES = "properties"
     ITEMS = "items"
     REQUIRED = "required"
-    OPTIONAL = "optional"
+    EXAMPLE = "example"
 
 
 class TypeKey:
@@ -14,6 +15,11 @@ class TypeKey:
     NUMBER = "number"  # 浮点数
     BOOLEAN = "boolean"
     NULL = "null"
+
+
+class PathKey:
+    ROOT_PATH = "#"
+    SPACE = "/"
 
 
 class LoggingMessage:
