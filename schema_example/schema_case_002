@@ -1,0 +1,99 @@
+{
+    "path": "#",
+    "type": "object",
+    "properties": {
+        "error_code": {
+            "type": "integer",
+            "path": "#/properties/error_code",
+            "example": 500
+        },
+        "error_message": {
+            "type": "string",
+            "path": "#/properties/error_message",
+            "example": "something bad happened."
+        },
+        "data": {
+            "type": "object",
+            "path": "#/properties/data",
+
+            "example": {
+                "path": "#/properties/data/example",
+                "name": "Yufeng Yan",
+                "is_male": true,
+                "crime_record": null,
+                "age": 22,
+                "height": 185.0,
+                "language": [
+                    "python",
+                    "Java",
+                    "Golang",
+                    "Javascript"
+                ],
+                "degree": {
+                    "bachelor": "WHUT",
+                    "master": "UVA"
+                }
+            },
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "path": "#/properties/data/properties/name",
+                    "example": "Yufeng Yan"
+                },
+                "is_male": {
+                    "type": "boolean",
+                    "path": "#/properties/data/properties/is_male",
+                    "example": true
+                },
+                "crime_record": {
+                    "type": "null",
+                    "path": "#/properties/data/properties/crime_record",
+                    "example": null
+                },
+                "age": {
+                    "type": "integer",
+                    "path": "#/properties/data/properties/age",
+                    "example": 22
+                },
+                "height": {
+                    "type": "number",
+                    "path": "#/properties/data/properties/height",
+                    "example": 185.0
+                },
+                "language": {
+                    "type": "array",
+                    "path": "#/properties/data/properties/language",
+                    "example": [
+                        "python",
+                        "Java",
+                        "Golang",
+                        "Javascript"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "degree": {
+                    "type": "object",
+                    "path": "#/properties/data/properties/degree",
+                    "example": {
+                        "bachelor": "WHUT",
+                        "master": "UVA"
+                    },
+                    "properties": {
+                        "bachelor": {
+                            "type": "string",
+                            "path": "#/properties/data/properties/degree/properties/bachelor",
+                            "example": "WHUT"
+                        },
+                        "master": {
+                            "type": "string",
+                            "path": "#/properties/data/properties/degree/properties/master",
+                            "example": "UVA"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
