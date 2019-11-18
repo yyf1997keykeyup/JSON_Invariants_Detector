@@ -2,11 +2,6 @@
     "path": "#",
     "type": "object",
     "properties": {
-        "error_code": {
-            "type": "integer",
-            "path": "#/properties/error_code",
-            "example": 500
-        },
         "error_message": {
             "type": "string",
             "path": "#/properties/error_message",
@@ -32,20 +27,9 @@
                 }
             },
             "properties": {
-                "name": {
-                    "type": "string",
-                    "path": "#/properties/data/properties/name",
-                    "example": "Yufeng Yan"
-                },
-                "is_male": {
-                    "type": "boolean",
-                    "path": "#/properties/data/properties/is_male",
-                    "example": true
-                },
                 "crime_record": {
                     "type": "null",
-                    "path": "#/properties/data/properties/crime_record",
-                    "example": null
+                    "path": "#/properties/data/properties/crime_record"
                 },
                 "age": {
                     "type": "integer",
