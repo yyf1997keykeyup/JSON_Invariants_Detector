@@ -1,4 +1,5 @@
 import json
+import sys
 
 from src.converter.schema_generator import SchemaGenerator
 from src.util.common import print_to_file
@@ -63,6 +64,10 @@ class RecordMap:
             # when it is an array
             records[RecordMapKey.TYPE_LIST][key_attrs.get(SchemaKey.TYPE)][RecordMapKey.ARRAY_ITEM_TYPE] \
                 = key_attrs[SchemaKey.ITEMS][SchemaKey.TYPE]
+            records[RecordMapKey.TYPE_LIST][key_attrs.get(SchemaKey.TYPE)][RecordMapKey.ARRAY_LENGTH_MAX] \
+                = max(records[RecordMapKey.TYPE_LIST][key_attrs.get(SchemaKey.TYPE)].get(RecordMapKey.ARRAY_LENGTH_MAX, 0), len(key_attrs[SchemaKey.EXAMPLE]))
+            records[RecordMapKey.TYPE_LIST][key_attrs.get(SchemaKey.TYPE)][RecordMapKey.ARRAY_LENGTH_MIN] \
+                = min(records[RecordMapKey.TYPE_LIST][key_attrs.get(SchemaKey.TYPE)].get(RecordMapKey.ARRAY_LENGTH_MIN, sys.maxsize), len(key_attrs[SchemaKey.EXAMPLE]))
 
         return records
 
@@ -83,15 +88,23 @@ class RecordMap:
             key_addr = property_dict
             for key_root_path in key_root_paths:
                 if key_root_path != PathKey.ROOT_PATH:
-                    key_addr = property_dict[key_root_path][TypeKey.OBJECT]
+                    key_addr = property_dict[key_root_path][SchemaKey.POSSIBLE_TYPES][TypeKey.OBJECT]
 
+            possible_types = {}
             key_addr[key_name] = {
-                SchemaKey.PATH: key_path
+                SchemaKey.PATH: key_path,
+                SchemaKey.POSSIBLE_TYPES: possible_types
             }
             for type_name, type_records in key_records[RecordMapKey.TYPE_LIST].items():
-                key_addr[key_name][type_name] = dict()
+                possible_types[type_name] = dict()
+                type_info = possible_types[type_name]
+
                 if RecordMapKey.VALUE_COUNT in type_records:
-                    key_addr[key_name][type_name][RecordMapKey.VALUE_IN] = list(type_records[RecordMapKey.VALUE_COUNT].keys())
+                    type_info[RecordMapKey.VALUE_IN] = list(type_records[RecordMapKey.VALUE_COUNT].keys())
+
+                if type_name == TypeKey.ARRAY:
+                    type_info[SchemaKey.ARRAY_LENGTH_RANGE] = [type_records[RecordMapKey.ARRAY_LENGTH_MIN], type_records[RecordMapKey.ARRAY_LENGTH_MAX]]
+                    type_info[RecordMapKey.ARRAY_ITEM_TYPE] = type_records[RecordMapKey.ARRAY_ITEM_TYPE]
 
         return _invariant_schema
 
@@ -115,8 +128,7 @@ def test_pattern1():
     print_to_file(json_str, file_name="../../output/invariant_schema.txt")
 
 
-if __name__ == "__main__":
-    # test_pattern1()
+def test_pattern2():
     sg = SchemaGenerator()
     rm = RecordMap()
     schema = sg.generate(file_path="../../testcases/pattern2/data1.txt",
@@ -133,3 +145,20 @@ if __name__ == "__main__":
     invariant_schema = rm.generate_invariant_schema()
     json_str = json.dumps(invariant_schema, indent=4)
     print_to_file(json_str, file_name="../../output/pattern2/invariant_schema.txt")
+
+
+if __name__ == "__main__":
+    # test_pattern1()
+    # test_pattern2()
+    sg = SchemaGenerator()
+    rm = RecordMap()
+    schema = sg.generate(file_path="../../testcases/pattern3/data1.txt",
+                         request_params={"param": "name"},
+                         http_method=HTTPMethodKey.GET)
+    rm.add(schema)
+    json_str = json.dumps(rm.path2records, indent=4)
+    print_to_file(json_str, file_name="../../output/pattern3/record.txt")
+
+    invariant_schema = rm.generate_invariant_schema()
+    json_str = json.dumps(invariant_schema, indent=4)
+    print_to_file(json_str, file_name="../../output/pattern3/invariant_schema.txt")

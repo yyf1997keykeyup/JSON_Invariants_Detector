@@ -19,6 +19,9 @@ class SchemaKey:
 
     PATH = "path"
     TYPE = "type"
+    POSSIBLE_TYPES = "possible_types"
+    ARRAY_LENGTH_RANGE = "array_length_range"
+
     PROPERTIES = "properties"
     ITEMS = "items"
     REQUIRED = "required"
@@ -70,6 +73,9 @@ class RecordMapKey:
     VALUE_COUNT = "value_count"
     VALUE_IN = "value_in"
     KEY_EXIST_WHEN = "key_exist_when"
+
     ARRAY_ITEM_TYPE = "array_items_type"
+    ARRAY_LENGTH_MIN = "array_length_min"
+    ARRAY_LENGTH_MAX = "array_length_max"
 
 

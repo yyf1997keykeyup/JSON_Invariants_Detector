@@ -38,9 +38,14 @@ class SchemaGenerator:
         return properties
 
     def parse_list_item(self, json_list: list) -> dict:
-        items = {}
+        types = []
+        items = {
+            SchemaKey.TYPE: types
+        }
         for item in json_list:
-            items[SchemaKey.TYPE] = TypeKey.NULL if item is None else self.type_key_map[type(item)]
+            item_type = TypeKey.NULL if item is None else self.type_key_map[type(item)]
+            if item_type not in types:
+                types.append(item_type)
         return items
 
     def init_root_schema(self, request_params: dict, http_method: str):
