@@ -1,4 +1,22 @@
+class HTTPMethodKey:
+    GET = "GET"
+    HEAD = "HEAD"
+    POST = "POST"
+    PUT = "PUT"
+    DELETE = "DELETE"
+    CONNECT = "CONNECT"
+    OPTIONS = "OPTIONS"
+    TRACE = "TRACE"
+    PATCH = "PATCH"
+
+    DEFAULT = "DEFAULT"
+
+
 class SchemaKey:
+    REQUEST_METHOD = "request_method"
+    REQUEST_PARAMS = "request_params"
+    RESPONSE_DATA = "response_data"
+
     PATH = "path"
     TYPE = "type"
     PROPERTIES = "properties"
@@ -15,6 +33,8 @@ class TypeKey:
     NUMBER = "number"  # 浮点数
     BOOLEAN = "boolean"
     NULL = "null"
+
+    BASIC_TYPE = [STRING, INTEGER, NUMBER, BOOLEAN]
 
 
 class PathKey:
@@ -41,3 +61,15 @@ class TypeToTypeKeyMap:
 
     def get_key_map(self):
         return self.type_map
+
+
+class RecordMapKey:
+    ROOT = "root"
+    COUNT = "count"
+    TYPE_LIST = "types"
+    VALUE_COUNT = "value_count"
+    VALUE_IN = "value_in"
+    KEY_EXIST_WHEN = "key_exist_when"
+    ARRAY_ITEM_TYPE = "array_items_type"
+
+
