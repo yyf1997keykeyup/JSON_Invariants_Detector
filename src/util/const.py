@@ -78,4 +78,9 @@ class RecordMapKey:
     ARRAY_LENGTH_MIN = "array_length_min"
     ARRAY_LENGTH_MAX = "array_length_max"
 
+    COMMON_CONTEXT = "common_context"
+
+    REQUEST = "request"
+
+
 

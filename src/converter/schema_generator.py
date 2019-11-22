@@ -30,22 +30,31 @@ class SchemaGenerator:
                 curr_path = root_path + PathKey.SPACE + key
                 properties[key][SchemaKey.PROPERTIES] = self.parse_dict_properties(value, curr_path)
             elif type(value) == list:
-                properties[key][SchemaKey.ITEMS] = self.parse_list_item(value)
-                properties[key][SchemaKey.EXAMPLE] = value
+                curr_path = root_path + PathKey.SPACE + key + PathKey.SPACE + SchemaKey.ITEMS
+                properties[key][SchemaKey.ITEMS] = self.parse_list_item(value, curr_path)
+                # properties[key][SchemaKey.EXAMPLE] = value
             else:
+                # basic types
                 properties[key][SchemaKey.EXAMPLE] = value,
 
         return properties
 
-    def parse_list_item(self, json_list: list) -> dict:
-        types = []
+    def parse_list_item(self, json_list: list, curr_path: str) -> dict:
+        if len(json_list) == 0:
+            return {}
+        # take the first one for example
+        example_item = json_list[0]
         items = {
-            SchemaKey.TYPE: types
+            SchemaKey.TYPE: TypeKey.NULL if example_item is None else self.type_key_map[type(example_item)],
+            SchemaKey.PATH: curr_path,
         }
-        for item in json_list:
-            item_type = TypeKey.NULL if item is None else self.type_key_map[type(item)]
-            if item_type not in types:
-                types.append(item_type)
+        if items[SchemaKey.TYPE] in TypeKey.BASIC_TYPE:
+            items[SchemaKey.EXAMPLE] = json_list
+        elif items[SchemaKey.TYPE] == TypeKey.ARRAY:
+            items[SchemaKey.ITEMS] = self.parse_list_item(json_list[0], curr_path)
+        elif items[SchemaKey.TYPE] == TypeKey.OBJECT:
+            items[SchemaKey.PROPERTIES] = self.parse_dict_properties(json_list[0], curr_path)
+
         return items
 
     def init_root_schema(self, request_params: dict, http_method: str):
@@ -70,7 +79,7 @@ if __name__ == "__main__":
     params = {
         "name": "YufengYan"
     }
-    schema = sg.generate(file_path="../../testcases/simple_case.txt",
-                         request_params=params,
-                         http_method=HTTPMethodKey.GET)
+    # file_path = "../../testcases/simple_case.txt"
+    file_path = "../../testcases/object_in_array.txt"
+    schema = sg.generate(file_path=file_path, request_params=params, http_method=HTTPMethodKey.GET)
     print(schema)
