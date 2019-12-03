@@ -27,6 +27,9 @@ class SchemaKey:
     REQUIRED = "required"
     EXAMPLE = "example"
 
+    PRE_CONDITION = "pre_condition"
+    NOT_EXIST_WHEN = "not_exist_when"
+
 
 class TypeKey:
     OBJECT = "object"
@@ -72,13 +75,13 @@ class RecordMapKey:
     TYPE_LIST = "types"
     VALUE_COUNT = "value_count"
     VALUE_IN = "value_in"
-    KEY_EXIST_WHEN = "key_exist_when"
 
     ARRAY_ITEM_TYPE = "array_items_type"
     ARRAY_LENGTH_MIN = "array_length_min"
     ARRAY_LENGTH_MAX = "array_length_max"
 
-    COMMON_CONTEXT = "common_context"
+    EXIST_WHEN = "exist_when"
+    NOT_EXIST_WHEN = "not_exist_when"
 
     REQUEST = "request"
 

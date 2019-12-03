@@ -8,14 +8,13 @@ class SchemaGenerator:
     def __init__(self):
         self.type_key_map = TypeToTypeKeyMap().get_key_map()
 
-    def generate(self, file_path: str, request_params: dict, http_method=HTTPMethodKey.DEFAULT):
-        json_dict = load_data_from_file(file_path)
+    def generate(self, json_dict: dict, request_params: dict, http_method=HTTPMethodKey.DEFAULT):
         json_schema = self.init_root_schema(request_params, http_method)
         json_schema[SchemaKey.RESPONSE_DATA][SchemaKey.PROPERTIES] = \
             self.parse_dict_properties(json_dict, json_schema[SchemaKey.RESPONSE_DATA][SchemaKey.PATH])
 
         json_str = json.dumps(json_schema, indent=4)
-        print_to_file(json_str)
+        # print_to_file(json_str)
         return json_schema
 
     def parse_dict_properties(self, json_dict: dict, root_path: str) -> dict:

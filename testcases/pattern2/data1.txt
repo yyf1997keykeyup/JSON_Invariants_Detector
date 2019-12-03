@@ -1,4 +1,9 @@
 {
-        	"code": 200,
-        	"data": ["Python", "Java"]
+    "code": 200,
+    "message": "success",
+    "data": {
+        "id": 434,
+        "name": "John",
+        "role": "student"
+    }
 }

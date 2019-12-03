@@ -1,0 +1,5 @@
+{
+    "log_id": 9,
+    "log_type": "event_log",
+    "log_events": {}
+}

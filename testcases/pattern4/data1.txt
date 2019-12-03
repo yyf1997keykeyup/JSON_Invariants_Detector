@@ -1,0 +1,4 @@
+{
+    "same_type_list": ["A", "B"],
+    "mixed_type_list": ["A", 10]
+}
