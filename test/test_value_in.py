@@ -59,9 +59,11 @@ class TestValueIn(unittest.TestCase):
             "grade"]["possible_types"]["integer"]
 
         assert "value_in" in target_path
-        assert target_path["value_in"] == [60, 99]
+        assert len(target_path["value_in"]) == 2
+        assert 60 in target_path["value_in"]
+        assert 99 in target_path["value_in"]
 
-    def test_puplicated_data(self):
+    def test_duplicated_data(self):
         """
         pattern 1
         have 3 json data
@@ -111,8 +113,9 @@ class TestValueIn(unittest.TestCase):
         target_path = invariant_schema["properties"]["data"]["possible_types"]["object"]["properties"][
             "grade"]["possible_types"]["integer"]
 
-        assert "value_in" in target_path
-        assert target_path["value_in"] == [60, 99]
+        assert len(target_path["value_in"]) == 2
+        assert 60 in target_path["value_in"]
+        assert 99 in target_path["value_in"]
 
     def test_excessive_range(self):
         """
@@ -185,7 +188,7 @@ class TestValueIn(unittest.TestCase):
             "grade"]["possible_types"]["integer"]
 
         assert "value_in" in target_path
-        assert len(target_path["value_in"]) == 0
+        assert len(target_path["value_in"]) == 0  # means this invariant does not hold
 
     def test_same_monitor(self):
         """
@@ -223,7 +226,7 @@ class TestValueIn(unittest.TestCase):
 
         invariant_schema_changed = self.record_map.generate_invariant_schema()
 
-        assert invariant_schema == invariant_schema_changed
+        assert invariant_schema == invariant_schema_changed  # schema unchanged
 
 
     def test_diff_monitor(self):
@@ -263,57 +266,4 @@ class TestValueIn(unittest.TestCase):
         invariant_schema_changed = self.record_map.generate_invariant_schema()
 
         # todo: give diff info
-        assert invariant_schema != invariant_schema_changed
-
-    # todo: seperate the below apart
-
-    def test_possible_type(self):
-        """
-        pattern 2
-        """
-        data_1 = {
-            "code": 200,
-            "message": "success",
-            "data": {
-                "id": 434,
-                "name": "John",
-                "role": "student"
-            }
-        }
-        data_2 = {
-            "code": 200,
-            "message": "success",
-            "data": [434, 343, 93]
-        }
-
-        schema_1 = self.schema_generator.generate(json_dict=data_1,
-                                                  request_params={"name": "John"},
-                                                  http_method=HTTPMethodKey.GET)
-        self.record_map.add(schema_1)
-        schema_2 = self.schema_generator.generate(json_dict=data_2,
-                                                  request_params={"role": "student"},
-                                                  http_method=HTTPMethodKey.GET)
-        self.record_map.add(schema_2)
-
-        self.record_map.load()
-
-        """print to file"""
-        # json_str = json.dumps(self.record_map.get_records(), indent=4)
-        # print_to_file(json_str, file_name="../../output/pattern2/record.txt")
-
-        invariant_schema = self.record_map.generate_invariant_schema()
-
-        """print to file"""
-        # json_str = json.dumps(invariant_schema, indent=4)
-        # print_to_file(json_str, file_name="../../output/pattern2/invariant_schema.txt")
-
-        target_path = invariant_schema["properties"]["data"]["possible_types"]
-
-        assert len(target_path) == 2
-        assert "object" in target_path
-        assert target_path["object"]["pre_condition"] == {'request_params/name': 'John'}
-        assert "array" in target_path
-        assert target_path["array"]["pre_condition"] == {'request_params/role': 'student'}
-
-
-
+        assert invariant_schema != invariant_schema_changed  # schema changed
