@@ -1,7 +1,7 @@
 import json
 import logging
 
-from src.util.const import LoggingMessage
+from util.const import LoggingMessage
 
 
 def load_data_from_file(file_path: str) -> dict:
@@ -17,5 +17,5 @@ def load_data_from_file(file_path: str) -> dict:
 
 
 def print_to_file(_schema: str, file_name="../../output/a.txt"):
-    with open(file_name, 'a') as the_file:
+    with open(file_name, 'w') as the_file:
         the_file.write(_schema)

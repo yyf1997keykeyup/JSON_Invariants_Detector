@@ -1,0 +1,44 @@
+{
+    "#/same_type_list": {
+        "count": 1,
+        "not_exist_when": {},
+        "types": {
+            "array": {
+                "count": 1,
+                "value_count": {},
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/param": [
+                        "v1"
+                    ]
+                },
+                "array_items_type": "string",
+                "array_length_max": 2,
+                "array_length_min": 2
+            }
+        }
+    },
+    "#/mixed_type_list": {
+        "count": 1,
+        "not_exist_when": {},
+        "types": {
+            "array": {
+                "count": 1,
+                "value_count": {},
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/param": [
+                        "v1"
+                    ]
+                },
+                "array_items_type": "string",
+                "array_length_max": 2,
+                "array_length_min": 2
+            }
+        }
+    }
+}

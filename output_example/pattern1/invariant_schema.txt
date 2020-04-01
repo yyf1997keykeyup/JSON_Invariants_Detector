@@ -1,0 +1,55 @@
+{
+    "path": "#",
+    "type": "object",
+    "properties": {
+        "code": {
+            "path": "#/code",
+            "not_exist_when": {},
+            "possible_types": {
+                "integer": {
+                    "value_in": [
+                        200
+                    ],
+                    "pre_condition": {}
+                }
+            }
+        },
+        "message": {
+            "path": "#/message",
+            "not_exist_when": {},
+            "possible_types": {
+                "string": {
+                    "value_in": [
+                        "success"
+                    ],
+                    "pre_condition": {}
+                }
+            }
+        },
+        "data": {
+            "path": "#/data",
+            "not_exist_when": {},
+            "possible_types": {
+                "object": {
+                    "value_in": [],
+                    "pre_condition": {},
+                    "properties": {
+                        "grade": {
+                            "path": "#/data/grade",
+                            "not_exist_when": {},
+                            "possible_types": {
+                                "integer": {
+                                    "value_in": [
+                                        60,
+                                        99
+                                    ],
+                                    "pre_condition": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

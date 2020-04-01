@@ -1,0 +1,74 @@
+{
+    "path": "#",
+    "type": "object",
+    "properties": {
+        "log_id": {
+            "path": "#/log_id",
+            "not_exist_when": {},
+            "possible_types": {
+                "integer": {
+                    "value_in": [
+                        1,
+                        9
+                    ],
+                    "pre_condition": {}
+                }
+            }
+        },
+        "log_type": {
+            "path": "#/log_type",
+            "not_exist_when": {},
+            "possible_types": {
+                "string": {
+                    "value_in": [
+                        "time_log",
+                        "event_log"
+                    ],
+                    "pre_condition": {}
+                }
+            }
+        },
+        "log_timeline": {
+            "path": "#/log_timeline",
+            "not_exist_when": {
+                "request_params/log_id": [
+                    9
+                ],
+                "#/log_id": [
+                    9
+                ],
+                "#/log_type": [
+                    "event_log"
+                ]
+            },
+            "possible_types": {
+                "array": {
+                    "value_in": [],
+                    "pre_condition": {},
+                    "array_items_type": null
+                }
+            }
+        },
+        "log_events": {
+            "path": "#/log_events",
+            "not_exist_when": {
+                "request_params/log_id": [
+                    1
+                ],
+                "#/log_id": [
+                    1
+                ],
+                "#/log_type": [
+                    "time_log"
+                ]
+            },
+            "possible_types": {
+                "object": {
+                    "value_in": [],
+                    "pre_condition": {},
+                    "properties": {}
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "path": "#",
+    "type": "object",
+    "properties": {
+        "same_type_list": {
+            "path": "#/same_type_list",
+            "not_exist_when": {},
+            "possible_types": {
+                "array": {
+                    "value_in": [],
+                    "pre_condition": {},
+                    "array_items_type": "string",
+                    "array_length_range": [
+                        2,
+                        2
+                    ]
+                }
+            }
+        },
+        "mixed_type_list": {
+            "path": "#/mixed_type_list",
+            "not_exist_when": {},
+            "possible_types": {
+                "array": {
+                    "value_in": [],
+                    "pre_condition": {},
+                    "array_items_type": "string",
+                    "array_length_range": [
+                        2,
+                        2
+                    ]
+                }
+            }
+        }
+    }
+}

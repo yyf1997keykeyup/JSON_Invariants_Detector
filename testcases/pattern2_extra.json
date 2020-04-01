@@ -1,0 +1,10 @@
+{
+  "data1.txt": {
+    "method": "get",
+    "params": {"name": "John"}
+  },
+  "data2.txt": {
+    "method": "get",
+    "params": {"role": "student"}
+  }
+}

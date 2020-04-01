@@ -1,0 +1,10 @@
+{
+  "data1.txt": {
+    "method": "get",
+    "params": {"log_id": 1}
+  },
+  "data2.txt": {
+    "method": "get",
+    "params": {"log_id": 9}
+  }
+}

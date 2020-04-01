@@ -1,7 +1,7 @@
 import json
 
-from src.util.common import load_data_from_file, print_to_file
-from src.util.const import HTTPMethodKey, SchemaKey, TypeKey, TypeToTypeKeyMap, PathKey
+from util.common import load_data_from_file, print_to_file
+from util.const import HTTPMethodKey, SchemaKey, TypeKey, TypeToTypeKeyMap, PathKey
 
 
 class SchemaGenerator:
@@ -71,14 +71,3 @@ class SchemaGenerator:
             SchemaKey.PROPERTIES: {},
         }
         return initial_json_schema
-
-
-if __name__ == "__main__":
-    sg = SchemaGenerator()
-    params = {
-        "name": "YufengYan"
-    }
-    # file_path = "../../testcases/simple_case.txt"
-    file_path = "../../testcases/object_in_array.txt"
-    schema = sg.generate(file_path=file_path, request_params=params, http_method=HTTPMethodKey.GET)
-    print(schema)

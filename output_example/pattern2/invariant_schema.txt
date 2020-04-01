@@ -1,0 +1,124 @@
+{
+    "path": "#",
+    "type": "object",
+    "properties": {
+        "code": {
+            "path": "#/code",
+            "not_exist_when": {},
+            "possible_types": {
+                "integer": {
+                    "value_in": [
+                        200
+                    ],
+                    "pre_condition": {}
+                }
+            }
+        },
+        "message": {
+            "path": "#/message",
+            "not_exist_when": {},
+            "possible_types": {
+                "string": {
+                    "value_in": [
+                        "success"
+                    ],
+                    "pre_condition": {}
+                }
+            }
+        },
+        "data": {
+            "path": "#/data",
+            "not_exist_when": {},
+            "possible_types": {
+                "object": {
+                    "value_in": [],
+                    "pre_condition": {
+                        "request_params/name": "John"
+                    },
+                    "properties": {
+                        "id": {
+                            "path": "#/data/id",
+                            "not_exist_when": {
+                                "request_params/role": [
+                                    "student"
+                                ],
+                                "#/data/items": [
+                                    [
+                                        434,
+                                        343,
+                                        93
+                                    ]
+                                ]
+                            },
+                            "possible_types": {
+                                "integer": {
+                                    "value_in": [
+                                        434
+                                    ],
+                                    "pre_condition": {}
+                                }
+                            }
+                        },
+                        "name": {
+                            "path": "#/data/name",
+                            "not_exist_when": {
+                                "request_params/role": [
+                                    "student"
+                                ],
+                                "#/data/items": [
+                                    [
+                                        434,
+                                        343,
+                                        93
+                                    ]
+                                ]
+                            },
+                            "possible_types": {
+                                "string": {
+                                    "value_in": [
+                                        "John"
+                                    ],
+                                    "pre_condition": {}
+                                }
+                            }
+                        },
+                        "role": {
+                            "path": "#/data/role",
+                            "not_exist_when": {
+                                "request_params/role": [
+                                    "student"
+                                ],
+                                "#/data/items": [
+                                    [
+                                        434,
+                                        343,
+                                        93
+                                    ]
+                                ]
+                            },
+                            "possible_types": {
+                                "string": {
+                                    "value_in": [
+                                        "student"
+                                    ],
+                                    "pre_condition": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "array": {
+                    "value_in": [],
+                    "pre_condition": {
+                        "request_params/role": "student"
+                    },
+                    "array_items_type": "integer",
+                    "array_length_range": [
+                        3,
+                        3
+                    ]
+                }
+            }
+        }
+    }
+}

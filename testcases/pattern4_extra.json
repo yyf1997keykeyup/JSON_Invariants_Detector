@@ -1,0 +1,6 @@
+{
+  "data1.txt": {
+    "method": "get",
+    "params": {"param": "v1"}
+  }
+}

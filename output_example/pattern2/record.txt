@@ -1,0 +1,255 @@
+{
+    "#/code": {
+        "count": 2,
+        "not_exist_when": {},
+        "types": {
+            "integer": {
+                "count": 2,
+                "value_count": {
+                    "200": 2
+                },
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/name": [
+                        "John"
+                    ],
+                    "#/message": [
+                        "success"
+                    ],
+                    "request_params/role": [
+                        "student"
+                    ]
+                }
+            }
+        }
+    },
+    "#/message": {
+        "count": 2,
+        "not_exist_when": {},
+        "types": {
+            "string": {
+                "count": 2,
+                "value_count": {
+                    "success": 2
+                },
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/name": [
+                        "John"
+                    ],
+                    "#/code": [
+                        200
+                    ],
+                    "request_params/role": [
+                        "student"
+                    ]
+                }
+            }
+        }
+    },
+    "#/data": {
+        "count": 2,
+        "not_exist_when": {},
+        "types": {
+            "object": {
+                "count": 1,
+                "value_count": {},
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/name": [
+                        "John"
+                    ],
+                    "#/code": [
+                        200
+                    ],
+                    "#/message": [
+                        "success"
+                    ]
+                }
+            },
+            "array": {
+                "count": 1,
+                "value_count": {},
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/role": [
+                        "student"
+                    ],
+                    "#/code": [
+                        200
+                    ],
+                    "#/message": [
+                        "success"
+                    ]
+                },
+                "array_items_type": "integer",
+                "array_length_max": 3,
+                "array_length_min": 3
+            }
+        }
+    },
+    "#/data/id": {
+        "count": 1,
+        "not_exist_when": {
+            "request_method": [
+                "GET"
+            ],
+            "request_params/role": [
+                "student"
+            ],
+            "#/code": [
+                200
+            ],
+            "#/message": [
+                "success"
+            ],
+            "#/data/items": [
+                [
+                    434,
+                    343,
+                    93
+                ]
+            ]
+        },
+        "types": {
+            "integer": {
+                "count": 1,
+                "value_count": {
+                    "434": 1
+                },
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/name": [
+                        "John"
+                    ],
+                    "#/code": [
+                        200
+                    ],
+                    "#/message": [
+                        "success"
+                    ],
+                    "#/data/name": [
+                        "John"
+                    ],
+                    "#/data/role": [
+                        "student"
+                    ]
+                }
+            }
+        }
+    },
+    "#/data/name": {
+        "count": 1,
+        "not_exist_when": {
+            "request_method": [
+                "GET"
+            ],
+            "request_params/role": [
+                "student"
+            ],
+            "#/code": [
+                200
+            ],
+            "#/message": [
+                "success"
+            ],
+            "#/data/items": [
+                [
+                    434,
+                    343,
+                    93
+                ]
+            ]
+        },
+        "types": {
+            "string": {
+                "count": 1,
+                "value_count": {
+                    "John": 1
+                },
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/name": [
+                        "John"
+                    ],
+                    "#/code": [
+                        200
+                    ],
+                    "#/message": [
+                        "success"
+                    ],
+                    "#/data/id": [
+                        434
+                    ],
+                    "#/data/role": [
+                        "student"
+                    ]
+                }
+            }
+        }
+    },
+    "#/data/role": {
+        "count": 1,
+        "not_exist_when": {
+            "request_method": [
+                "GET"
+            ],
+            "request_params/role": [
+                "student"
+            ],
+            "#/code": [
+                200
+            ],
+            "#/message": [
+                "success"
+            ],
+            "#/data/items": [
+                [
+                    434,
+                    343,
+                    93
+                ]
+            ]
+        },
+        "types": {
+            "string": {
+                "count": 1,
+                "value_count": {
+                    "student": 1
+                },
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/name": [
+                        "John"
+                    ],
+                    "#/code": [
+                        200
+                    ],
+                    "#/message": [
+                        "success"
+                    ],
+                    "#/data/id": [
+                        434
+                    ],
+                    "#/data/name": [
+                        "John"
+                    ]
+                }
+            }
+        }
+    }
+}

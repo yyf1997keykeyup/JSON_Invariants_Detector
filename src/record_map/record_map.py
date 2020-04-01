@@ -1,5 +1,5 @@
 import sys
-from src.util.const import SchemaKey, TypeKey, RecordMapKey, PathKey
+from util.const import SchemaKey, TypeKey, RecordMapKey, PathKey
 
 
 class RecordMap:
@@ -112,15 +112,15 @@ class RecordMap:
 
             type_root = self.path2records[path][RecordMapKey.TYPE_LIST][key_attrs.get(SchemaKey.TYPE)]
             type_root[RecordMapKey.COUNT] += 1
-            # 更新 context
+            # update context
             type_root[RecordMapKey.EXIST_WHEN] = self.add_or_update_context(path, type_root[RecordMapKey.EXIST_WHEN])
 
-            # 更新基础类型的 VALUE_COUNT
+            # update the VALUE_COUNT (for basic types)
             if key_attrs[SchemaKey.TYPE] in TypeKey.BASIC_TYPE:
                 value = key_attrs[SchemaKey.EXAMPLE][0]
                 type_root[RecordMapKey.VALUE_COUNT][value] = type_root[RecordMapKey.VALUE_COUNT].get(value, 0) + 1
 
-            # 更新array类型的 属性 (array item type, max and min length of array)
+            # update some attributes of array type (array item type, max and min length of array)
             elif key_attrs[SchemaKey.TYPE] == TypeKey.ARRAY:
                 if SchemaKey.TYPE in key_attrs[SchemaKey.ITEMS]:
                     type_root[RecordMapKey.ARRAY_ITEM_TYPE] = key_attrs[SchemaKey.ITEMS][SchemaKey.TYPE]

@@ -6,7 +6,7 @@
 # Request Method
 "GET"
 
-# 单个JSON源文件：
+# single json data：
 {
     "error_code": 500,
 	"error_message": "something bad happened.",
@@ -27,7 +27,7 @@
 
 
 
-# 单个JSON源文件生成的schema：
+# the json schema of the json：
 {
     request_method: "GET",
     request_params:{

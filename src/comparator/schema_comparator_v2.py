@@ -1,5 +1,5 @@
 import json
-from src.util.const import SchemaKey, TypeKey, LoggingMessage, TypeToTypeKeyMap
+from util.const import SchemaKey, TypeKey, LoggingMessage, TypeToTypeKeyMap
 import logging
 
 class SchemaComparator:

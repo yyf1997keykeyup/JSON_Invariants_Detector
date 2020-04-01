@@ -1,0 +1,128 @@
+{
+    "#/log_id": {
+        "count": 2,
+        "not_exist_when": {},
+        "types": {
+            "integer": {
+                "count": 2,
+                "value_count": {
+                    "1": 1,
+                    "9": 1
+                },
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/log_id": [
+                        1,
+                        9
+                    ],
+                    "#/log_type": [
+                        "time_log",
+                        "event_log"
+                    ]
+                }
+            }
+        }
+    },
+    "#/log_type": {
+        "count": 2,
+        "not_exist_when": {},
+        "types": {
+            "string": {
+                "count": 2,
+                "value_count": {
+                    "time_log": 1,
+                    "event_log": 1
+                },
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/log_id": [
+                        1,
+                        9
+                    ],
+                    "#/log_id": [
+                        1,
+                        9
+                    ]
+                }
+            }
+        }
+    },
+    "#/log_timeline": {
+        "count": 1,
+        "not_exist_when": {
+            "request_method": [
+                "GET"
+            ],
+            "request_params/log_id": [
+                9
+            ],
+            "#/log_id": [
+                9
+            ],
+            "#/log_type": [
+                "event_log"
+            ]
+        },
+        "types": {
+            "array": {
+                "count": 1,
+                "value_count": {},
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/log_id": [
+                        1
+                    ],
+                    "#/log_id": [
+                        1
+                    ],
+                    "#/log_type": [
+                        "time_log"
+                    ]
+                }
+            }
+        }
+    },
+    "#/log_events": {
+        "count": 1,
+        "not_exist_when": {
+            "request_method": [
+                "GET"
+            ],
+            "request_params/log_id": [
+                1
+            ],
+            "#/log_id": [
+                1
+            ],
+            "#/log_type": [
+                "time_log"
+            ]
+        },
+        "types": {
+            "object": {
+                "count": 1,
+                "value_count": {},
+                "exist_when": {
+                    "request_method": [
+                        "GET"
+                    ],
+                    "request_params/log_id": [
+                        9
+                    ],
+                    "#/log_id": [
+                        9
+                    ],
+                    "#/log_type": [
+                        "event_log"
+                    ]
+                }
+            }
+        }
+    }
+}

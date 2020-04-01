@@ -1,5 +1,5 @@
 import json
-from src.util.const import SchemaKey, TypeKey, LoggingMessage, TypeToTypeKeyMap
+from util.const import SchemaKey, TypeKey, LoggingMessage, TypeToTypeKeyMap
 
 
 class SchemaComparator:
@@ -9,15 +9,15 @@ class SchemaComparator:
     def compare(self, dic1: dict, dic2: dict, path1="#", path2="#"):
         for key in dic1:
             if key in dic2:
-                # 如果两个schema都不是dict类型
+                # if none of them is basic
                 if type(dic1[key]) != dict and type(dic2[key]) != dict:
                     if dic1[key] != dic2[key]:
-                        # 打印Schema1
+                        # print Schema1
                         print("Schema1(path: ", end="")
                         print(path1 + "): ", end="")
                         print('"' + key + '"' + ": " + str(dic1[key]), end="")
                         print(";    ", end="")
-                        # 打印Schema2
+                        # print Schema2
                         print("Schema2(path: ", end="")
                         print(path2 + "): ", end="")
                         print('"' + key + '"' + ": " + str(dic2[key]))
@@ -48,6 +48,6 @@ class SchemaComparator:
 
 if __name__ == "__main__":
     comparator = SchemaComparator()
-    schema1 = '../../schema_example/schema_case_002'
-    schema2 = '../../schema_example/schema_case_003'
+    schema1 = '../../original_schema_example/schema_case_002'
+    schema2 = '../../original_schema_example/schema_case_003'
     comparator.compare_schema(schema1, schema2)
